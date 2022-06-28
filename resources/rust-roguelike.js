@@ -1,13 +1,10 @@
-let wasm_bindgen;
-(function() {
-    const __exports = {};
-    let wasm;
 
-    const lAudioContext = (typeof AudioContext !== 'undefined' ? AudioContext : (typeof webkitAudioContext !== 'undefined' ? webkitAudioContext : undefined));
+const lAudioContext = (typeof AudioContext !== 'undefined' ? AudioContext : (typeof webkitAudioContext !== 'undefined' ? webkitAudioContext : undefined));
+let wasm;
 
-    const heap = new Array(32).fill(undefined);
+const heap = new Array(32).fill(undefined);
 
-    heap.push(undefined, null, true, false);
+heap.push(undefined, null, true, false);
 
 function getObject(idx) { return heap[idx]; }
 
@@ -1668,13 +1665,7 @@ function initSync(bytes) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        let src;
-        if (typeof document === 'undefined') {
-            src = location.href;
-        } else {
-            src = document.currentScript.src;
-        }
-        input = src.replace(/\.js$/, '_bg.wasm');
+        input = new URL('rust-roguelike_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 
@@ -1689,6 +1680,5 @@ async function init(input) {
     return finalizeInit(instance, module);
 }
 
-wasm_bindgen = Object.assign(init, __exports);
-
-})();
+export { initSync }
+export default init;
