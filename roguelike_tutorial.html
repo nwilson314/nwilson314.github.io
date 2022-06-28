@@ -92,12 +92,11 @@
     <p>Try the WASM build below. (Thanks Rust!)</p>
   </div>
   <div>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <script src="resources/rust-roguelike.js"></script>
-    <script>
-      window.addEventListener("load", async () => {
-        await wasm_bindgen("resources/rust-roguelike_bg.wasm");
-      });
+    <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
+    <!-- <script src="resources/rust-roguelike.js"></script> -->
+    <script type="module">
+        import init from './target/rust-roguelike.js'
+        init()
     </script>
   </div>
 
