@@ -96,7 +96,11 @@
     <!-- <script src="resources/rust-roguelike.js"></script> -->
     <script type="module">
         import init from './resources/rust-roguelike.js'
-        init()
+        async function run() {
+            await init("/resources/rust-roguelike_bg.wasm")
+        }
+
+        run();
     </script>
   </div>
 
